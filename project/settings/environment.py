@@ -17,3 +17,9 @@ ROOT_URLCONF = 'project.urls'
 WSGI_APPLICATION = 'project.wsgi.application'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ROLEPERMISSIONS_MODULE = 'project.roles'
+
+ROLEPERMISSIONS_REGISTER_ADMIN = True
+
+ROLEPERMISSIONS_REDIRECT_TO_LOGIN = True
