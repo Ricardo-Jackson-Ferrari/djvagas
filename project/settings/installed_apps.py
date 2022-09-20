@@ -11,4 +11,5 @@ INSTALLED_APPS = [
     'rolepermissions',
     'widget_tweaks',
     # project
+    'project.common',
 ]
