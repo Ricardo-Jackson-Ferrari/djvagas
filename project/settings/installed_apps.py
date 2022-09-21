@@ -12,5 +12,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     # project
     'project.common',
+    'project.account',
     'project.job',
 ]
