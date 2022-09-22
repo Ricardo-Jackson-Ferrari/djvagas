@@ -5,8 +5,8 @@ from .debug_toolbar import *
 from .environment import *
 from .i18n import *
 from .installed_apps import *
+from .locale import *
 from .mail import *
 from .messages import *
 from .middlewares import *
 from .templates import *
-from .locale import *
