@@ -9,3 +9,4 @@ from .mail import *
 from .messages import *
 from .middlewares import *
 from .templates import *
+from .locale import *
