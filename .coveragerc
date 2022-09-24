@@ -4,7 +4,7 @@
 omit =
     .venv/*
     */__init__.py
-    */settings.py
+    */settings/*
     */manage.py
     */asgi.py
     */wsgi.py
