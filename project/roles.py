@@ -13,7 +13,7 @@ class Company(AbstractUserRole):
     }
 
 
-class CompanyManage(AbstractUserRole):
+class CompanyManager(AbstractUserRole):
     available_permissions = {
         manage_job: True,
     }
