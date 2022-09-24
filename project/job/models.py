@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
+from django.core.exceptions import NON_FIELD_ERRORS
 
 class Base(models.Model):
     created_at = models.DateTimeField(
@@ -45,6 +45,7 @@ class Salary(models.Model):
 class Job(Base):
     title = models.CharField(max_length=100, verbose_name=_('title'))
     status = models.BooleanField(default=False)
+    slug = models.SlugField(verbose_name=_('friendly url'), unique=True)
     schooling = models.ForeignKey(
         to=Schooling, on_delete=models.DO_NOTHING, verbose_name=_('schooling')
     )
@@ -92,6 +93,17 @@ class Application(Base):
 
     def __str__(self) -> str:
         return self.job.title
+
+    def validate_unique(self, exclude=None) -> None:
+        return super().validate_unique(exclude)
+
+    def unique_error_message(self, model_class, unique_check):
+        error = super().unique_error_message(model_class, unique_check)
+
+        if model_class == type(self) and unique_check == ('candidate', 'job'):
+            error.message = _(f'{self.candidate} already registered for job.')
+
+        return error
 
     class Meta:
         verbose_name = _('application')

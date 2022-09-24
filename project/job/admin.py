@@ -10,16 +10,17 @@ admin.site.register(Salary)
 class JobAdmin(admin.ModelAdmin):
     list_display = ['title', 'company', 'status']
     list_filter = ('title', 'company', 'status')
+    prepopulated_fields = {'slug': ('title',)}
 
 
 @admin.register(Schooling)
-class JobAdmin(admin.ModelAdmin):
+class SchoolingAdmin(admin.ModelAdmin):
     list_display = ['schooling', 'level']
     list_filter = ('schooling', 'level')
 
 
 @admin.register(Application)
-class JobAdmin(admin.ModelAdmin):
+class ApplicationAdmin(admin.ModelAdmin):
     list_display = ['get_job_title', 'candidate', 'status']
     list_filter = ('job__title', 'status')
 
