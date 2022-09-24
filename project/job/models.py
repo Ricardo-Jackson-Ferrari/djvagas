@@ -1,7 +1,8 @@
 from django.conf import settings
+from django.core.exceptions import NON_FIELD_ERRORS
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import NON_FIELD_ERRORS
+
 
 class Base(models.Model):
     created_at = models.DateTimeField(
