@@ -95,14 +95,12 @@ class Application(Base):
     def __str__(self) -> str:
         return self.job.title
 
-    def validate_unique(self, exclude=None) -> None:
-        return super().validate_unique(exclude)
-
     def unique_error_message(self, model_class, unique_check):
         error = super().unique_error_message(model_class, unique_check)
 
         if model_class == type(self) and unique_check == ('candidate', 'job'):
-            error.message = _(f'{self.candidate} already registered for job.')
+            error.message = _('%(candidate)s already registered for job.')
+            error.params['candidate'] = self.candidate
 
         return error
 
