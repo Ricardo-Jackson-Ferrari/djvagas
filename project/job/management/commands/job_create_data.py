@@ -1,9 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
-from project.job.models import Job
-from model_bakery import baker
 from django.utils.text import slugify
 from faker import Faker
-from django.contrib.auth import get_user_model
+from model_bakery import baker
+
+from project.job.models import Job
+
 
 class Command(BaseCommand):
     help = 'job_create_data'

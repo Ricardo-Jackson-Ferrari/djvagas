@@ -9,7 +9,7 @@ admin.site.register(Salary)
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
     list_display = ['title', 'company', 'status']
-    list_filter = ('status', )
+    list_filter = ('status',)
     search_fields = ['title', 'company__email']
     prepopulated_fields = {'slug': ('title',)}
 
