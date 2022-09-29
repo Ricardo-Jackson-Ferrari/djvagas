@@ -2,10 +2,12 @@ from django.test import TestCase
 from django.utils.translation import gettext_lazy as _
 from model_bakery import baker
 from parameterized import parameterized
+from pytest import mark
 
 from project.job.models import Application
 
 
+@mark.unit
 class SchoolingUnittest(TestCase):
     def test_return_str(self):
         application = baker.make(Application)
