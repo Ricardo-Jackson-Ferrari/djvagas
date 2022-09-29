@@ -46,6 +46,7 @@ class Salary(models.Model):
 class Job(Base):
     title = models.CharField(max_length=100, verbose_name=_('title'))
     status = models.BooleanField(default=False)
+    checked = models.BooleanField(default=False)
     slug = models.SlugField(verbose_name=_('friendly url'), unique=True)
     schooling = models.ForeignKey(
         to=Schooling, on_delete=models.DO_NOTHING, verbose_name=_('schooling')

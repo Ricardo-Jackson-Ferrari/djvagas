@@ -26,6 +26,7 @@ class Command(BaseCommand):
             'title': faker.text(),
             'description': faker.text(),
             'status': faker.boolean(),
+            'checked': faker.boolean(),
             'slug': slugify(faker.name()),
         }
 
