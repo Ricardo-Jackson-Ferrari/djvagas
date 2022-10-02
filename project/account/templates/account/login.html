@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+{% if form.errors %}
+<p>{% translate "Your email and password didn't match. Please try again." %}</p>
+{% endif %}
+<form action="{% url 'account:login' %}" method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+</form>
+{% endblock content %}
