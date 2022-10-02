@@ -2,7 +2,7 @@ from django.test import SimpleTestCase
 from faker import Faker
 from pytest import mark
 
-from project.account.forms import NormalizeEmailMixin
+from project.account.mixins import NormalizeEmailMixin
 
 
 @mark.unit

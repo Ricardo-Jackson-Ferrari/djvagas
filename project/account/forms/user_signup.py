@@ -5,17 +5,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
 from project.account.models import User
+from project.account.mixins import NormalizeEmailMixin
 
-
-class NormalizeEmailMixin:
-    def _normalize_email(self):
-        self.data = dict(self.data.items())
-        email = self.data.get('email')
-        if email is not None:
-            self.data['email'] = email.lower()
-
-
-class UserSignupForm(UserCreationForm, NormalizeEmailMixin):
+class UserSignupForm(NormalizeEmailMixin, UserCreationForm):
     class Meta:
         model = User
         fields = (
