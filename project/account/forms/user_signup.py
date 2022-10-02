@@ -4,8 +4,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
-from project.account.models import User
 from project.account.mixins import NormalizeEmailMixin
+from project.account.models import User
+
 
 class UserSignupForm(NormalizeEmailMixin, UserCreationForm):
     class Meta:
