@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.http import request
+from django.http import HttpRequest
 from django.test import TestCase
 from model_bakery import baker
 
@@ -14,7 +14,7 @@ class ApplicationManagementUnittest(TestCase):
         baker.make('Application')
 
         view = ApplicationManagement()
-        view.request = request
+        view.request = HttpRequest()
         view.request.user = user
 
         self.assertQuerysetEqual(
