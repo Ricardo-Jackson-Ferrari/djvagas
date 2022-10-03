@@ -1,6 +1,6 @@
 from .create import JobCreate
 from .delete import JobDelete
 from .detail import JobDetail
+from .job_management import JobManagement
 from .list import JobList
-from .management import JobManagement
 from .search import JobSearch

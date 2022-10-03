@@ -9,4 +9,5 @@ class JobDetail(DetailView):
     extra_context = {'tittle': _('job detail')}
 
     def get_queryset(self):
-        return facade.get_full_authorized_job_list()
+        self.queryset = facade.get_full_authorized_job_list()
+        return super().get_queryset()

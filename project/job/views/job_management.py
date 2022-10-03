@@ -7,4 +7,5 @@ class JobManagement(ListView):
     template_name = 'job/job_management.html'
 
     def get_queryset(self):
-        return facade.get_user_job_list(user=self.request.user)
+        self.queryset = facade.get_user_job_list(user=self.request.user)
+        return super().get_queryset()
