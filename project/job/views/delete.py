@@ -7,10 +7,7 @@ from project.job import facade
 
 class JobDelete(DeleteView):
     success_url = reverse_lazy('job:management')
-
-    def get_queryset(self):
-        self.queryset = facade.get_full_job_list()
-        return super().get_queryset()
+    queryset = facade.get_full_job_list()
 
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()

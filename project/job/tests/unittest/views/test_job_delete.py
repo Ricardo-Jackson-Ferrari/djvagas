@@ -8,18 +8,6 @@ from project.job.views import JobDelete
 
 
 class JobDeleteUnittest(TestCase):
-    def test_delete_list_get_queryset(self):
-        baker.make('Job', status=False, checked=True)
-        baker.make('Job', status=True, checked=True)
-
-        baker.make('Job', status=False, checked=False)
-        baker.make('Job', status=True, checked=False)
-
-        self.assertEqual(
-            set(facade.get_full_job_list()),
-            set(JobDelete().get_queryset()),
-        )
-
     def test_delete_job_on_owner_status_code_200(self):
         job = baker.make('Job')
         url = reverse_lazy('job:delete', kwargs={'slug': job.slug})
