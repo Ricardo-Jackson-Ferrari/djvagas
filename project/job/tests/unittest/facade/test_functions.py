@@ -1,9 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from model_bakery import baker
 from pytest import mark
 
 from project.job import facade
-from project.job.models import Job
+from project.job.models import Application, Job
 
 
 @mark.unit
@@ -30,3 +31,9 @@ class JobListUnittest(TestCase):
     def test_get_user_job_list(self):
         job = baker.make(Job)
         self.assertEqual(1, facade.get_user_job_list(job.company).count())
+
+    def test_get_user_application_list(self):
+        user = baker.make(get_user_model())
+        baker.make(Application, candidate=user)
+
+        self.assertEqual(1, facade.get_user_application_list(user).count())

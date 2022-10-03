@@ -1,5 +1,6 @@
 from project.job.forms import JobCreateForm as _JobCreateForm
 
+from .models import Application as _Application
 from .models import Job as _Job
 
 __all__ = [
@@ -7,6 +8,7 @@ __all__ = [
     'get_full_authorized_job_list',
     'get_activated_authorized_job_list',
     'get_user_job_list',
+    'get_user_application_list',
     'get_job_create_form',
 ]
 
@@ -25,6 +27,10 @@ def get_activated_authorized_job_list():
 
 def get_user_job_list(user):
     return get_full_job_list().filter(company=user)
+
+
+def get_user_application_list(user):
+    return _Application.objects.filter(candidate=user)
 
 
 def get_job_create_form():
