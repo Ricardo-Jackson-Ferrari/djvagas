@@ -24,4 +24,4 @@ class ProfileCandidate(models.Model):
     experience = models.TextField(blank=True, verbose_name=_('experience'))
 
     def __str__(self) -> str:
-        return self.user.first_name
+        return self.candidate.first_name

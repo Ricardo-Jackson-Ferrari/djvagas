@@ -14,7 +14,7 @@ class Contact(models.Model):
         return self.phone
 
     def clean(self):
-        if self.user.contact_set.count() >= 2:
+        if self.user.contact_set.exclude(pk=self.pk).count() >= 2:
             raise ValidationError(
                 _('maximum number of phones already registered')
             )
@@ -22,9 +22,8 @@ class Contact(models.Model):
     def unique_error_message(self, model_class, unique_check):
         error = super().unique_error_message(model_class, unique_check)
 
-        if model_class == type(self) and unique_check == ('user', 'phone'):
-            error.message = _('%(phone)s already registered for this user.')
-            error.params['phone'] = self.phone
+        error.message = _('%(phone)s already registered for this user.')
+        error.params['phone'] = self.phone
 
         return error
 
