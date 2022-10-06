@@ -1,11 +1,13 @@
+import uuid
+
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-from django.contrib.auth.models import User as s
 from django.core.mail import send_mail
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from stdimage import StdImageField
 
-from .managers import UserManager
+from project.account.managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -16,6 +18,16 @@ class User(AbstractBaseUser, PermissionsMixin):
     """
 
     first_name = models.CharField(_('first name'), max_length=30)
+    image = StdImageField(
+        verbose_name=_('image'),
+        blank=True,
+        upload_to='account/',
+        variations={
+            'thumb_medium': {'width': 100, 'height': 100, 'crop': True},
+            'thumb_small': {'width': 50, 'height': 50, 'crop': True},
+        },
+        delete_orphans=True,
+    )
     email = models.EmailField(
         _('email address'),
         unique=True,

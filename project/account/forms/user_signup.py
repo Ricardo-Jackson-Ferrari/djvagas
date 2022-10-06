@@ -14,6 +14,7 @@ class UserSignupForm(NormalizeEmailMixin, UserCreationForm):
         fields = (
             'first_name',
             'email',
+            'image',
         )
 
     def __init__(self, *args, **kwargs):

@@ -4,13 +4,16 @@ from django.utils.translation import gettext_lazy as _
 from rolepermissions.admin import RolePermissionsUserAdminMixin
 
 from project.account.forms import UserSignupForm
-from project.account.models import User
+from project.account.models import Contact, ProfileCandidate, User
+
+admin.site.register(ProfileCandidate)
+admin.site.register(Contact)
 
 
 @admin.register(User)
 class UserAdmin(RolePermissionsUserAdminMixin, DjangoUserAdmin):
     fieldsets = (
-        (None, {'fields': ('first_name', 'email', 'password')}),
+        (None, {'fields': ('first_name', 'email', 'password', 'image')}),
         (
             _('Permissions'),
             {
