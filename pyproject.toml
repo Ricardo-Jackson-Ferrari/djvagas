@@ -10,6 +10,7 @@ Django = "^4.1.1"
 django-widget-tweaks = "^1.4.12"
 python-decouple = "^3.6"
 django-role-permissions = "^3.1.1"
+django-stdimage = "^6.0.1"
 
 [tool.poetry.dev-dependencies]
 django-extensions = "^3.2.1"

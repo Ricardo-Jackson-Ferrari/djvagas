@@ -10,6 +10,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'rolepermissions',
     'widget_tweaks',
+    'stdimage',
     # project
     'project.common',
     'project.account',
