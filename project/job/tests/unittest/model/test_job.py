@@ -1,9 +1,10 @@
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from model_bakery import baker
 from pytest import mark
-from django.contrib.auth import get_user_model
+
 from project.job.models import Job
-from django.core.exceptions import ValidationError
 
 
 @mark.unit
@@ -22,7 +23,7 @@ class JobUnittest(TestCase):
             'salary_from': 1.0,
             'salary_to': 0.0,
             'company': baker.make(get_user_model()),
-            'description': 'test'
+            'description': 'test',
         }
 
         job = Job(**data)
@@ -39,7 +40,7 @@ class JobUnittest(TestCase):
             'salary_from': 0.0,
             'salary_to': 1.0,
             'company': baker.make(get_user_model()),
-            'description': 'test'
+            'description': 'test',
         }
 
         job = Job(**data)

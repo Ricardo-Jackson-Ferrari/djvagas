@@ -1,10 +1,11 @@
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from django.test import TestCase
+from django.utils.translation import gettext_lazy as _
 from model_bakery import baker
 from pytest import mark
-from django.contrib.auth import get_user_model
+
 from project.account.models import Contact
-from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
 
 
 @mark.unit

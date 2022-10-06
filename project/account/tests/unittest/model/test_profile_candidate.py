@@ -2,6 +2,7 @@ from django.test import TestCase
 from model_bakery import baker
 from pytest import mark
 
+
 @mark.unit
 class ProfileCandidateUnittest(TestCase):
     def test_return_str(self):
