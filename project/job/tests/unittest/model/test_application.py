@@ -17,7 +17,7 @@ class SchoolingUnittest(TestCase):
         [
             (
                 _('%(model_name)s with this %(field_labels)s already exists.'),
-                ('schooling', 'job'),
+                ('status', 'job'),
             ),
             (
                 _('%(candidate)s already registered for job.'),
