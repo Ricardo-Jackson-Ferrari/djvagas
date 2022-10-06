@@ -13,12 +13,6 @@ class Company(AbstractUserRole):
     }
 
 
-class CompanyManager(AbstractUserRole):
-    available_permissions = {
-        manage_job: True,
-    }
-
-
 apply_job = 'apply_job'
 
 
