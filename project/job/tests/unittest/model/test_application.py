@@ -8,7 +8,7 @@ from project.job.models import Application
 
 
 @mark.unit
-class SchoolingUnittest(TestCase):
+class ApplicationUnittest(TestCase):
     def test_return_str(self):
         application = baker.make(Application)
         self.assertEqual(application.job.title, str(application))

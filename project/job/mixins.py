@@ -1,7 +1,4 @@
-from django.forms import ModelForm
-
-
-class BaseModelForm(ModelForm):
+class FormMixin:
     def add_attr(self, field, attr_name, attr_value):
         field = self.fields[field]
         existing_attr = field.widget.attrs.get(attr_name, '')

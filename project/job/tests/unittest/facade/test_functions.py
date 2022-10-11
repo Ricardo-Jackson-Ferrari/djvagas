@@ -37,3 +37,12 @@ class JobListUnittest(TestCase):
         baker.make(Application, candidate=user)
 
         self.assertEqual(1, facade.get_user_application_list(user).count())
+
+    def test_get_job_with_slug(self):
+        baker.make(Job, status=False, checked=False)
+        baker.make(Job, status=True, checked=False)
+        baker.make(Job, status=False, checked=True)
+        job = baker.make(Job, status=True, checked=True)
+        self.assertEqual(
+            job, facade.get_job_activated_authorized_with_slug(job.slug)
+        )

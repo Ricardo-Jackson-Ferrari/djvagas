@@ -1,10 +1,14 @@
+from random import randint
+
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 from django.utils.text import slugify
 from faker import Faker
 from model_bakery import baker
+from rolepermissions.roles import assign_role
 
 from project.job.models import Job
+from project.roles import Company
 
 
 class Command(BaseCommand):
@@ -19,10 +23,14 @@ class Command(BaseCommand):
 
     def get_job(self):
         faker = Faker()
+        salary = randint(500, 5000)
+        company = baker.make(get_user_model())
+        assign_role(company, Company.get_name())
         data = {
             'schooling': baker.make('Schooling'),
-            'company': baker.make(get_user_model()),
-            'salary_range': baker.make('Salary'),
+            'company': company,
+            'salary_from': salary,
+            'salary_to': salary + 100,
             'title': faker.text(),
             'description': faker.text(),
             'status': faker.boolean(),
