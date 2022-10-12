@@ -21,6 +21,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     image = StdImageField(
         verbose_name=_('image'),
         blank=True,
+        null=True,
         upload_to='account/',
         variations={
             'thumb_medium': {'width': 100, 'height': 100, 'crop': True},
