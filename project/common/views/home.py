@@ -1,9 +1,6 @@
-from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import TemplateView
 
 
-class Home(View):
-    def get(self, request):
-        ctx = {}
-        ctx['title'] = 'Home'
-        return render(self.request, 'common/home.html', ctx)
+class Home(TemplateView):
+    extra_context = {'title': 'home'}
+    template_name = 'common/home.html'
