@@ -19,6 +19,7 @@ urlpatterns = [
     path('list/', views.JobList.as_view(), name='list'),
     path('create/', views.JobCreate.as_view(), name='create'),
     path('detail/<slug:slug>', views.JobDetail.as_view(), name='detail'),
+    path('update/<slug:slug>', views.JobUpdate.as_view(), name='update'),
     path('delete/<slug:slug>', views.JobDelete.as_view(), name='delete'),
     path('search/', views.JobSearch.as_view(), name='search'),
 ]
