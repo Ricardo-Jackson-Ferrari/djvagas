@@ -5,6 +5,6 @@ from project.job.forms import JobCreateForm
 
 
 class JobCreate(CreateView):
-    template_name = 'job/job_create.html'
+    template_name = 'job/job_form.html'
     form_class = JobCreateForm
     extra_context = {'tittle': _('job registration')}

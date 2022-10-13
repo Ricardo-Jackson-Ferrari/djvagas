@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-{% block content %}
-<form action="" method='POST'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="text" name="job" value="jake-moore" hidden>
-    <input type="submit" value="aplicar">
-</form>
-{% endblock content %}

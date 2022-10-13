@@ -3,9 +3,6 @@ from django.test import TestCase
 from django.urls import reverse_lazy
 from model_bakery import baker
 
-from project.job import facade
-from project.job.views import JobDelete
-
 
 class JobDeleteUnittest(TestCase):
     def test_delete_job_on_owner_status_code_200(self):
