@@ -38,7 +38,10 @@ class UserAdmin(RolePermissionsUserAdminMixin, DjangoUserAdmin):
             None,
             {
                 'classes': ('wide',),
-                'fields': ('first_name', 'email'),
+                'fields': (
+                    'first_name',
+                    'email',
+                ),
             },
         ),
     )

@@ -3,6 +3,7 @@ from collections import ChainMap
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
+from rolepermissions.roles import RolesManager
 
 from project.account.mixins import NormalizeEmailMixin
 from project.account.models import User
@@ -14,7 +15,9 @@ class UserSignupForm(NormalizeEmailMixin, UserCreationForm):
         fields = (
             'first_name',
             'email',
-            'image',
+            'password1',
+            'password2',
+            'role',
         )
 
     def __init__(self, *args, **kwargs):
@@ -38,13 +41,17 @@ class UserSignupForm(NormalizeEmailMixin, UserCreationForm):
     password1 = forms.CharField(
         label=_('Password'),
         strip=False,
-        required=False,
+        required=True,
         widget=forms.PasswordInput,
     )
     password2 = forms.CharField(
         label=_('Password confirmation'),
         widget=forms.PasswordInput,
         strip=False,
-        required=False,
+        required=True,
         help_text=_('Enter the same password as before, for verification.'),
+    )
+    role = forms.ChoiceField(
+        label=_('Category'),
+        choices=[(role, role) for role in RolesManager.get_roles_names()],
     )
