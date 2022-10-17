@@ -8,7 +8,7 @@ from project.job.models import Application, Job
 
 
 @mark.unit
-class JobListUnittest(TestCase):
+class FacadeUnittest(TestCase):
     def setUp(self) -> None:
         baker.make(Job, status=False, checked=True)
         baker.make(Job, status=True, checked=True)
