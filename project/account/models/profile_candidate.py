@@ -16,8 +16,9 @@ class ProfileCandidate(models.Model):
     objective = models.TextField(blank=True, verbose_name=_('objective'))
     schooling = models.ForeignKey(
         to=Schooling,
-        on_delete=models.DO_NOTHING,
+        on_delete=models.SET_NULL,
         blank=True,
+        null=True,
         verbose_name=_('schooling'),
     )
     attending = models.BooleanField(default=False, verbose_name=_('attending'))
