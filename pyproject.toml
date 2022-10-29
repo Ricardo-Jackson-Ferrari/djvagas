@@ -5,7 +5,7 @@ description = ""
 authors = ["Ricardo-Jackson-Ferrari <ricjferrari@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 Django = "^4.1.1"
 django-widget-tweaks = "^1.4.12"
 python-decouple = "^3.6"
