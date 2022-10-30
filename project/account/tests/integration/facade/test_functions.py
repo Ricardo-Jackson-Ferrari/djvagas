@@ -13,7 +13,7 @@ class FacadeIntegrationTest(TestCase):
         user = baker.make(get_user_model())
         assign_role(user, Candidate.get_name())
 
-        facade.create_candidate_profile(user)
+        facade._create_candidate_profile(user)
 
         self.assertTrue(ProfileCandidate.objects.get(candidate=user))
 
@@ -22,13 +22,13 @@ class FacadeIntegrationTest(TestCase):
 
         self.assertRaises(
             facade.UserIsNotCandidate,
-            facade.create_candidate_profile,
+            facade._create_candidate_profile,
             user=user,
         )
 
     def test_user_assign_role(self):
         user = baker.make(get_user_model())
         role = Candidate
-        facade.user_assign_role(user, role.get_name())
+        facade._user_assign_role(user, role.get_name())
 
         self.assertTrue(role in get_user_roles(user))
