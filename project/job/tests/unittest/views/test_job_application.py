@@ -1,10 +1,10 @@
-from django.contrib.auth import get_user_model
 from django.http import Http404, HttpRequest
 from django.test import TestCase
 from django.urls import reverse_lazy
 from model_bakery import baker
-from rolepermissions.roles import assign_role
 
+from project.account import facade
+from project.account.forms import UserSignupForm
 from project.job.views import JobApplication
 from project.roles import Candidate
 
@@ -12,8 +12,16 @@ from project.roles import Candidate
 class JobApplicationUnittest(TestCase):
     def setUp(self):
         self.job = baker.make('Job', status=True, checked=True)
-        self.user = baker.make(get_user_model())
-        assign_role(self.user, Candidate.get_name())
+        data_user = {
+            'first_name': 'candidate',
+            'email': 'candidate@email.com',
+            'password1': 'candidate_password',
+            'password2': 'candidate_password',
+            'role': Candidate.get_name(),
+        }
+        form = UserSignupForm(data=data_user)
+
+        self.user = facade.create_candidate(form)
 
     def test_method_get_200_return(self):
         request = HttpRequest()

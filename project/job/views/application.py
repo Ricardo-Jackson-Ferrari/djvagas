@@ -12,12 +12,11 @@ from project.roles import Candidate
 
 class JobApplication(HasRoleMixin, SuccessMessageMixin, CreateView):
     form_class = JobApplicationForm
-    template_name = 'job/job_application.html'
+    template_name = 'job/job_form.html'
     extra_context = {'title': _('job application')}
     success_url = reverse_lazy('job:application_management')
     success_message = _('Enrollment successful')
     allowed_roles = Candidate.get_name()
-    redirect_to_login = False
 
     def get(self, request, *args, **kwargs):
         try:
