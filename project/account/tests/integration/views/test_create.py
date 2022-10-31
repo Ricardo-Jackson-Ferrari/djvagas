@@ -1,9 +1,10 @@
 from django.test import TestCase
+from parameterized import parameterized
+from rolepermissions.roles import RolesManager
 
 from project.account.views import AccountCreateView
 from project.roles import *
-from rolepermissions.roles import RolesManager
-from parameterized import parameterized
+
 
 class AccountCreateViewTest(TestCase):
     def setUp(self):

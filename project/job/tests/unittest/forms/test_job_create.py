@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import SimpleTestCase
 from django.utils.translation import gettext_lazy as _
 from parameterized import parameterized
 from pytest import mark
@@ -7,7 +7,7 @@ from project.job.forms import JobCreateForm
 
 
 @mark.unit
-class JobCreateFormUnitTest(TestCase):
+class JobCreateFormUnitTest(SimpleTestCase):
     @parameterized.expand(
         [
             ('title', _('job title')),

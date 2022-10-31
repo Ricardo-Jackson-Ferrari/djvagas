@@ -29,6 +29,21 @@ class Schooling(models.Model):
     def __str__(self) -> str:
         return self.schooling
 
+    def __gt__(self, obj):
+        if self.level > obj.level:
+            return True
+        return False
+
+    def __ge__(self, obj):
+        if self.level >= obj.level:
+            return True
+        return False
+
+    def __eq__(self, obj):
+        if self.level == obj.level:
+            return True
+        return False
+
     class Meta:
         verbose_name = _('schooling')
         verbose_name_plural = _('schoolings')
@@ -96,6 +111,34 @@ class Application(Base):
         validators=[MinValueValidator(0.0)],
         verbose_name=_('salary expectation'),
     )
+
+    score = models.DecimalField(
+        max_digits=4,
+        decimal_places=2,
+        validators=[MinValueValidator(0.0)],
+        verbose_name=_('score'),
+    )
+
+    def calculate_score(self):
+        profile = self.candidate.profilecandidate
+        max_score = 100
+        max_parity = 2
+        candidate_parity = 0
+
+        if profile.schooling is not None:
+            if profile.schooling >= self.job.schooling:
+                candidate_parity += 1
+
+        if self.job.salary_to >= self.salary_expectation:
+            candidate_parity += 1
+
+        score = max_score / max_parity * candidate_parity
+
+        return score
+
+    def save(self, *args, **kwargs):
+        self.score = self.calculate_score()
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return self.job.title

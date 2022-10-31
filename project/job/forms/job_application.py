@@ -7,4 +7,4 @@ from project.job.models import Application
 class JobApplicationForm(ModelForm):
     class Meta:
         model = Application
-        exclude = ['job', 'candidate', 'status']
+        exclude = ['job', 'candidate', 'status', 'score']

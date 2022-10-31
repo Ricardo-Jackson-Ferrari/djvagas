@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from django.test import TestCase
+from django.test import SimpleTestCase
 from model_bakery import baker
 from pytest import mark
 
@@ -8,9 +8,10 @@ from project.job.models import Job
 
 
 @mark.unit
-class JobUnittest(TestCase):
+class JobUnittest(SimpleTestCase):
     def test_return_str(self):
-        job = baker.make('Job')
+        job = baker.prepare('Job')
+
         self.assertEqual(job.title, str(job))
 
     def test_def_clean_error(self):
@@ -19,10 +20,10 @@ class JobUnittest(TestCase):
             'status': True,
             'checked': True,
             'slug': 'test',
-            'schooling': baker.make('Schooling'),
+            'schooling': baker.prepare('Schooling'),
             'salary_from': 1.0,
             'salary_to': 0.0,
-            'company': baker.make(get_user_model()),
+            'company': baker.prepare(get_user_model()),
             'description': 'test',
         }
 
@@ -36,10 +37,10 @@ class JobUnittest(TestCase):
             'status': True,
             'checked': True,
             'slug': 'test',
-            'schooling': baker.make('Schooling'),
+            'schooling': baker.prepare('Schooling'),
             'salary_from': 0.0,
             'salary_to': 1.0,
-            'company': baker.make(get_user_model()),
+            'company': baker.prepare(get_user_model()),
             'description': 'test',
         }
 

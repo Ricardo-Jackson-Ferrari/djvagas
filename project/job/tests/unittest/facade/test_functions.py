@@ -1,4 +1,3 @@
-from django.contrib.auth import get_user_model
 from django.test import TestCase
 from model_bakery import baker
 from pytest import mark
@@ -7,7 +6,6 @@ from project.job import facade
 from project.job.models import Application, Job
 
 
-@mark.unit
 class FacadeUnittest(TestCase):
     def setUp(self) -> None:
         baker.make(Job, status=False, checked=True)
@@ -32,16 +30,16 @@ class FacadeUnittest(TestCase):
         job = baker.make(Job)
         self.assertEqual(1, facade.get_user_job_list(job.company).count())
 
+    @mark.usefixtures('user_candidate_cls')
     def test_get_user_application_list(self):
-        user = baker.make(get_user_model())
-        baker.make(Application, candidate=user)
+        candidate = self.user_candidate()
+        baker.make(Application, candidate=candidate)
 
-        self.assertEqual(1, facade.get_user_application_list(user).count())
+        self.assertEqual(
+            1, facade.get_user_application_list(candidate).count()
+        )
 
     def test_get_job_with_slug(self):
-        baker.make(Job, status=False, checked=False)
-        baker.make(Job, status=True, checked=False)
-        baker.make(Job, status=False, checked=True)
         job = baker.make(Job, status=True, checked=True)
         self.assertEqual(
             job, facade.get_job_activated_authorized_with_slug(job.slug)
